@@ -28,10 +28,66 @@ Digito = [0-9]
 Identificador = {Letra}({Letra}|{Digito})*
 
 /* Número */
-Numero = 0 | [1-9][0-9]*
+Entero = -?[0-9]+
+//Fraccion
+Real = -?([0-9]+\.?[0-9]*|[0-9]*\.?[0-9]+)
+/* Constante string*/
+Cadena = \"[^\"]*\"
+/*id string*/
 %%
 
-/* Comentarios o espacios en blanco */
+/* EXPRESIONES REGULARES PARA Comentarios o espacios en blanco */
 {Comentario}|{EspacioEnBlanco} { /*Ignorar*/ }
+/*IDENTIFICADOR*/
+
+{Identificador}\$ {return token(yytext(), "-53", yyline, yycolumn);}
+{Identificador}\% {return token(yytext(), "-52", yyline, yycolumn);}
+{Identificador}\& {return token(yytext(), "-51", yyline, yycolumn);}
+{Identificador}\@ {return token(yytext(), "-54", yyline, yycolumn);}
+
+//--------------------------Palabras reservadas por orden------------------------//
+if {return token(yytext(), "-1", yyline, yycolumn);}
+else {return token(yytext(), "-2", yyline, yycolumn);}
+for {return token(yytext(), "-3", yyline, yycolumn);}
+print {return token(yytext(), "-4", yyline, yycolumn);}
+println {return token(yytext(), "-5", yyline, yycolumn);}
+
+//----------------------------------------------OPERADORES ARITMETICOS
+"*" {return token(yytext(), "-21", yyline, yycolumn);}
+"/" {return token(yytext(), "-22", yyline, yycolumn);}
+"%" {return token(yytext(), "-23", yyline, yycolumn);}
+"+" {return token(yytext(), "-24", yyline, yycolumn);}
+"-" {return token(yytext(), "-25", yyline, yycolumn);}
+"=" {return token(yytext(), "-26", yyline, yycolumn);}
+//----------------------------------------------OPERADORES RELACIONALESs
+"<" {return token(yytext(), "-31", yyline, yycolumn);}
+"<=" {return token(yytext(), "-32", yyline, yycolumn);}
+">" {return token(yytext(), "-33", yyline, yycolumn);}
+">=" {return token(yytext(), "-34", yyline, yycolumn);}
+"==" {return token(yytext(), "-35", yyline, yycolumn);}
+"!=" {return token(yytext(), "-36", yyline, yycolumn);}
+//----------------------------------------------OPERADORES LOGICOS
+"&&" {return token(yytext(), "-41", yyline, yycolumn);}
+"||" {return token(yytext(), "-42", yyline, yycolumn);}
+"!" {return token(yytext(), "-43", yyline, yycolumn);}
+//----------------------------------------------CARACTERES ESPECIALES
+"[" {return token(yytext(), "-71", yyline, yycolumn);}
+"]" {return token(yytext(), "-72", yyline, yycolumn);}
+"(" {return token(yytext(), "-73", yyline, yycolumn);}
+")" {return token(yytext(), "-74", yyline, yycolumn);}
+";" {return token(yytext(), "-75", yyline, yycolumn);}
+"," {return token(yytext(), "-76", yyline, yycolumn);}
+//----------------------------------------------CONTANTE REAL
+{Entero} {return token(yytext(), "-61", yyline, yycolumn);}
+//----------------------------------------------CONTANTE ENTERA
+{Real} {return token(yytext(), "-62", yyline, yycolumn);}
+//----------------------------------------------CONTANTE STRING
+{Cadena} {return token(yytext(), "-63", yyline, yycolumn);}
+
+//IDENTIFICADORES
+//string
+
+
+
 
 . { return token(yytext(), "ERROR", yyline, yycolumn); }

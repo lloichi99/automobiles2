@@ -63,7 +63,16 @@ class Lexer {
 
   private static final String ZZ_CMAP_BLOCKS_PACKED_0 =
     "\11\0\1\1\1\2\1\3\1\1\1\4\22\0\1\1"+
-    "\11\0\1\5\4\0\1\6\125\0\1\3\u01a2\0\2\3"+
+    "\1\5\1\6\1\0\1\7\1\10\1\11\1\0\1\12"+
+    "\1\13\1\14\1\15\1\16\1\17\1\20\1\21\12\22"+
+    "\1\0\1\23\1\24\1\25\1\26\1\0\1\27\32\30"+
+    "\1\31\1\0\1\32\1\0\1\30\1\0\4\30\1\33"+
+    "\1\34\2\30\1\35\2\30\1\36\1\30\1\37\1\40"+
+    "\1\41\1\30\1\42\1\43\1\44\6\30\1\0\1\45"+
+    "\10\0\1\3\73\0\1\30\7\0\1\30\3\0\1\30"+
+    "\3\0\1\30\1\0\1\30\6\0\1\30\1\0\1\30"+
+    "\4\0\1\30\7\0\1\30\3\0\1\30\3\0\1\30"+
+    "\1\0\1\30\6\0\1\30\1\0\1\30\u012b\0\2\3"+
     "\326\0\u0100\3";
 
   private static int [] zzUnpackcmap_blocks() {
@@ -91,10 +100,16 @@ class Lexer {
   private static final int [] ZZ_ACTION = zzUnpackAction();
 
   private static final String ZZ_ACTION_PACKED_0 =
-    "\1\0\1\1\2\2\1\1\1\0\1\2\3\0\1\2";
+    "\1\0\1\1\2\2\1\3\1\1\1\4\1\1\1\5"+
+    "\1\6\1\7\1\10\1\11\1\12\1\1\1\13\1\14"+
+    "\1\15\1\16\1\17\1\20\1\1\1\21\1\22\5\1"+
+    "\1\23\1\0\1\24\1\25\1\0\1\26\1\0\1\2"+
+    "\1\27\1\30\1\31\1\32\1\33\1\34\1\0\1\35"+
+    "\2\0\1\36\1\0\1\37\3\0\1\40\2\0\1\2"+
+    "\1\41\1\0\1\42\1\0\1\43";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[11];
+    int [] result = new int[62];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -119,11 +134,17 @@ class Lexer {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\7\0\7\0\16\0\25\0\34\0\43\0\52"+
-    "\0\61\0\70\0\52";
+    "\0\0\0\46\0\46\0\114\0\162\0\230\0\46\0\276"+
+    "\0\46\0\46\0\46\0\46\0\46\0\344\0\u010a\0\u0130"+
+    "\0\u0156\0\46\0\u017c\0\u01a2\0\u01c8\0\u01ee\0\46\0\46"+
+    "\0\u0214\0\u023a\0\u0260\0\u0286\0\u02ac\0\46\0\230\0\46"+
+    "\0\46\0\u010a\0\u010a\0\u02d2\0\u02f8\0\46\0\46\0\46"+
+    "\0\46\0\46\0\46\0\u01ee\0\46\0\u031e\0\u0344\0\u01ee"+
+    "\0\u036a\0\46\0\u0390\0\u03b6\0\u03dc\0\u01ee\0\u0402\0\u0428"+
+    "\0\u0390\0\u01ee\0\u044e\0\u0474\0\u049a\0\u01ee";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[11];
+    int [] result = new int[62];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -146,13 +167,41 @@ class Lexer {
   private static final int [] ZZ_TRANS = zzUnpackTrans();
 
   private static final String ZZ_TRANS_PACKED_0 =
-    "\1\2\2\3\1\0\1\4\1\2\1\5\11\0\1\3"+
-    "\11\0\1\6\1\7\5\10\1\11\1\10\2\7\1\3"+
-    "\1\7\1\4\2\7\5\10\1\12\6\10\1\12\1\13"+
-    "\5\10\1\12\1\3";
+    "\1\2\2\3\1\0\1\4\1\5\1\6\1\2\1\7"+
+    "\1\10\1\11\1\12\1\13\1\14\1\15\1\16\1\17"+
+    "\1\20\1\21\1\22\1\23\1\24\1\25\1\2\1\26"+
+    "\1\27\1\30\1\31\1\32\1\33\3\26\1\34\3\26"+
+    "\1\35\50\0\1\3\70\0\1\36\20\0\6\37\1\40"+
+    "\37\37\11\0\1\41\54\0\1\42\1\0\1\21\45\0"+
+    "\1\43\37\0\1\44\4\0\1\45\44\0\1\43\1\0"+
+    "\1\21\50\0\1\46\45\0\1\47\45\0\1\50\27\0"+
+    "\1\51\1\52\1\53\10\0\1\54\4\0\1\55\1\54"+
+    "\2\0\12\54\10\0\1\51\1\52\1\53\10\0\1\54"+
+    "\4\0\1\55\1\54\2\0\3\54\1\56\6\54\10\0"+
+    "\1\51\1\52\1\53\10\0\1\54\4\0\1\55\1\54"+
+    "\2\0\5\54\1\57\4\54\10\0\1\51\1\52\1\53"+
+    "\10\0\1\54\4\0\1\55\1\54\2\0\1\54\1\60"+
+    "\10\54\10\0\1\51\1\52\1\53\10\0\1\54\4\0"+
+    "\1\55\1\54\2\0\7\54\1\61\2\54\46\0\1\62"+
+    "\14\63\1\64\31\63\2\45\1\3\1\45\1\4\41\45"+
+    "\7\0\1\51\1\52\1\53\10\0\1\54\4\0\1\55"+
+    "\1\54\2\0\10\54\1\65\1\54\10\0\1\51\1\52"+
+    "\1\53\10\0\1\54\4\0\1\55\1\54\2\0\7\54"+
+    "\1\66\2\54\10\0\1\51\1\52\1\53\10\0\1\54"+
+    "\4\0\1\55\1\54\2\0\2\54\1\67\7\54\1\0"+
+    "\14\63\1\70\45\63\1\70\4\63\1\71\24\63\7\0"+
+    "\1\51\1\52\1\53\10\0\1\54\4\0\1\55\1\54"+
+    "\2\0\1\72\11\54\10\0\1\51\1\52\1\53\10\0"+
+    "\1\54\4\0\1\55\1\54\2\0\4\54\1\73\5\54"+
+    "\1\0\14\63\1\70\4\63\1\3\24\63\7\0\1\51"+
+    "\1\52\1\53\10\0\1\54\4\0\1\55\1\54\2\0"+
+    "\11\54\1\74\10\0\1\51\1\52\1\53\10\0\1\54"+
+    "\4\0\1\55\1\54\2\0\3\54\1\75\6\54\10\0"+
+    "\1\51\1\52\1\53\10\0\1\54\4\0\1\55\1\54"+
+    "\2\0\4\54\1\76\5\54\1\0";
 
   private static int [] zzUnpackTrans() {
-    int [] result = new int[63];
+    int [] result = new int[1216];
     int offset = 0;
     offset = zzUnpackTrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -195,10 +244,14 @@ class Lexer {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\1\0\2\11\2\1\1\0\1\1\3\0\1\1";
+    "\1\0\2\11\3\1\1\11\1\1\5\11\4\1\1\11"+
+    "\4\1\2\11\5\1\1\11\1\0\2\11\1\0\1\1"+
+    "\1\0\1\1\6\11\1\0\1\11\2\0\1\1\1\0"+
+    "\1\11\3\0\1\1\2\0\2\1\1\0\1\1\1\0"+
+    "\1\1";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[11];
+    int [] result = new int[62];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -677,12 +730,177 @@ class Lexer {
             { return token(yytext(), "ERROR", yyline, yycolumn);
             }
             // fall through
-          case 3: break;
+          case 36: break;
           case 2:
             { /*Ignorar*/
             }
             // fall through
-          case 4: break;
+          case 37: break;
+          case 3:
+            { return token(yytext(), "-43", yyline, yycolumn);
+            }
+            // fall through
+          case 38: break;
+          case 4:
+            { return token(yytext(), "-23", yyline, yycolumn);
+            }
+            // fall through
+          case 39: break;
+          case 5:
+            { return token(yytext(), "-73", yyline, yycolumn);
+            }
+            // fall through
+          case 40: break;
+          case 6:
+            { return token(yytext(), "-74", yyline, yycolumn);
+            }
+            // fall through
+          case 41: break;
+          case 7:
+            { return token(yytext(), "-21", yyline, yycolumn);
+            }
+            // fall through
+          case 42: break;
+          case 8:
+            { return token(yytext(), "-24", yyline, yycolumn);
+            }
+            // fall through
+          case 43: break;
+          case 9:
+            { return token(yytext(), "-76", yyline, yycolumn);
+            }
+            // fall through
+          case 44: break;
+          case 10:
+            { return token(yytext(), "-25", yyline, yycolumn);
+            }
+            // fall through
+          case 45: break;
+          case 11:
+            { return token(yytext(), "-22", yyline, yycolumn);
+            }
+            // fall through
+          case 46: break;
+          case 12:
+            { return token(yytext(), "-61", yyline, yycolumn);
+            }
+            // fall through
+          case 47: break;
+          case 13:
+            { return token(yytext(), "-75", yyline, yycolumn);
+            }
+            // fall through
+          case 48: break;
+          case 14:
+            { return token(yytext(), "-31", yyline, yycolumn);
+            }
+            // fall through
+          case 49: break;
+          case 15:
+            { return token(yytext(), "-26", yyline, yycolumn);
+            }
+            // fall through
+          case 50: break;
+          case 16:
+            { return token(yytext(), "-33", yyline, yycolumn);
+            }
+            // fall through
+          case 51: break;
+          case 17:
+            { return token(yytext(), "-71", yyline, yycolumn);
+            }
+            // fall through
+          case 52: break;
+          case 18:
+            { return token(yytext(), "-72", yyline, yycolumn);
+            }
+            // fall through
+          case 53: break;
+          case 19:
+            { return token(yytext(), "-36", yyline, yycolumn);
+            }
+            // fall through
+          case 54: break;
+          case 20:
+            { return token(yytext(), "-63", yyline, yycolumn);
+            }
+            // fall through
+          case 55: break;
+          case 21:
+            { return token(yytext(), "-41", yyline, yycolumn);
+            }
+            // fall through
+          case 56: break;
+          case 22:
+            { return token(yytext(), "-62", yyline, yycolumn);
+            }
+            // fall through
+          case 57: break;
+          case 23:
+            { return token(yytext(), "-32", yyline, yycolumn);
+            }
+            // fall through
+          case 58: break;
+          case 24:
+            { return token(yytext(), "-35", yyline, yycolumn);
+            }
+            // fall through
+          case 59: break;
+          case 25:
+            { return token(yytext(), "-34", yyline, yycolumn);
+            }
+            // fall through
+          case 60: break;
+          case 26:
+            { return token(yytext(), "-53", yyline, yycolumn);
+            }
+            // fall through
+          case 61: break;
+          case 27:
+            { return token(yytext(), "-52", yyline, yycolumn);
+            }
+            // fall through
+          case 62: break;
+          case 28:
+            { return token(yytext(), "-51", yyline, yycolumn);
+            }
+            // fall through
+          case 63: break;
+          case 29:
+            { return token(yytext(), "-54", yyline, yycolumn);
+            }
+            // fall through
+          case 64: break;
+          case 30:
+            { return token(yytext(), "-1", yyline, yycolumn);
+            }
+            // fall through
+          case 65: break;
+          case 31:
+            { return token(yytext(), "-42", yyline, yycolumn);
+            }
+            // fall through
+          case 66: break;
+          case 32:
+            { return token(yytext(), "-3", yyline, yycolumn);
+            }
+            // fall through
+          case 67: break;
+          case 33:
+            { return token(yytext(), "-2", yyline, yycolumn);
+            }
+            // fall through
+          case 68: break;
+          case 34:
+            { return token(yytext(), "-4", yyline, yycolumn);
+            }
+            // fall through
+          case 69: break;
+          case 35:
+            { return token(yytext(), "-5", yyline, yycolumn);
+            }
+            // fall through
+          case 70: break;
           default:
             zzScanError(ZZ_NO_MATCH);
         }
