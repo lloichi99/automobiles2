@@ -38,12 +38,7 @@ Cadena = \"[^\"]*\"
 
 /* EXPRESIONES REGULARES PARA Comentarios o espacios en blanco */
 {Comentario}|{EspacioEnBlanco} { /*Ignorar*/ }
-/*IDENTIFICADOR*/
 
-{Identificador}\$ {return token(yytext(), "-53", yyline, yycolumn);}
-{Identificador}\% {return token(yytext(), "-52", yyline, yycolumn);}
-{Identificador}\& {return token(yytext(), "-51", yyline, yycolumn);}
-{Identificador}\@ {return token(yytext(), "-54", yyline, yycolumn);}
 
 //--------------------------Palabras reservadas por orden------------------------//
 if {return token(yytext(), "-1", yyline, yycolumn);}
@@ -77,6 +72,10 @@ println {return token(yytext(), "-5", yyline, yycolumn);}
 ")" {return token(yytext(), "-74", yyline, yycolumn);}
 ";" {return token(yytext(), "-75", yyline, yycolumn);}
 "," {return token(yytext(), "-76", yyline, yycolumn);}
+"{" {return token(yytext(), "-77", yyline, yycolumn);}
+"}" {return token(yytext(), "-78", yyline, yycolumn);}
+
+
 //----------------------------------------------CONTANTE REAL
 {Entero} {return token(yytext(), "-61", yyline, yycolumn);}
 //----------------------------------------------CONTANTE ENTERA
@@ -85,8 +84,12 @@ println {return token(yytext(), "-5", yyline, yycolumn);}
 {Cadena} {return token(yytext(), "-63", yyline, yycolumn);}
 
 //IDENTIFICADORES
-//string
 
+
+{Identificador}\$ {return token(yytext(), "-53", yyline, yycolumn);}
+{Identificador}\% {return token(yytext(), "-52", yyline, yycolumn);}
+{Identificador}\& {return token(yytext(), "-51", yyline, yycolumn);}
+{Identificador}[a-zA-Z0-9]* {return token(yytext(), "-54", yyline, yycolumn);}
 
 
 
