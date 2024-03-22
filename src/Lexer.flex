@@ -19,6 +19,10 @@ FinDeLineaComentario = "//" {EntradaDeCaracter}* {TerminadorDeLinea}?
 ContenidoComentario = ( [^*] | \*+ [^/*] )*
 ComentarioDeDocumentacion = "/**" {ContenidoComentario} "*"+ "/"
 
+//------------------------------------------
+
+
+
 /* Comentario */
 Comentario = {ComentarioTradicional} | {FinDeLineaComentario} | {ComentarioDeDocumentacion}
 
@@ -83,6 +87,15 @@ println {return token(yytext(), "-5", yyline, yycolumn);}
 //----------------------------------------------CONTANTE STRING
 {Cadena} {return token(yytext(), "-63", yyline, yycolumn);}
 
+
+------------------------------------------------TIPO DE DATO
+
+"float" {return token(yytext(),"-65",yyline,yycolumn);}
+"String" {return token(yytext(),"-66",yyline,yycolumn);}
+"int" {return token(yytext(),"-64",yyline,yycolumn);}
+
+
+
 //IDENTIFICADORES
 
 
@@ -93,4 +106,16 @@ println {return token(yytext(), "-5", yyline, yycolumn);}
 
 
 
+    
+//Errores   GENERALES
 . { return token(yytext(), "ERROR", yyline, yycolumn); }
+
+
+
+/* Regla para identificar la declaración de variables */
+// Identificador Erroneo
+//{Identificador} { return token(yytext(),"ERROR1", yyline,yycolumn);}
+
+
+
+    

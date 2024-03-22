@@ -345,8 +345,19 @@ public class Compilador extends javax.swing.JFrame {
 
     private void syntacticAnalysis() {
         Grammar gramatica = new Grammar(tokens, errors);
-
+        
+        
         /* Mostrar gramáticas */
+        gramatica.delete(new String[]{"ERROR"},1);
+        
+        /*Agrupacion de valores numericos*/
+       // gramatica.group("numeros","-61 | -62 | -63",true);
+        
+        /*Declaracion de variables*/
+        /*Nose puede declarar una varibales sin poner el operadro de asignacion*/
+      //  gramatica.group("Variable","",true,
+        //        2,"Error de sintaxis: Falta el identificador en la variable [#,%]");
+        
         gramatica.show();
     }
 
