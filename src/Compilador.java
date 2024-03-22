@@ -348,15 +348,20 @@ public class Compilador extends javax.swing.JFrame {
         
         
         /* Mostrar gramáticas */
+        //Sirve para eliminar los errores 
         gramatica.delete(new String[]{"ERROR"},1);
         
+        
         /*Agrupacion de valores numericos*/
-       // gramatica.group("numeros","-61 | -62 | -63",true);
+        gramatica.group("NUM_VAL","-61|-62|-63",true);
         
         /*Declaracion de variables*/
         /*Nose puede declarar una varibales sin poner el operadro de asignacion*/
-      //  gramatica.group("Variable","",true,
-        //        2,"Error de sintaxis: Falta el identificador en la variable [#,%]");
+        gramatica.group("VARIABLES","-65 -54 -26 NUM_VAL",true);
+        gramatica.group("VARIABLES","-65 -26 NUM_VAL",true,
+              2,"Error de sintaxis: Falta el identificador en la variable [#,%]");
+        
+        
         
         gramatica.show();
     }
