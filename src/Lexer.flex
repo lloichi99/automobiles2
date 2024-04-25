@@ -50,7 +50,9 @@ else {return token(yytext(), "-2", yyline, yycolumn);}
 for {return token(yytext(), "-3", yyline, yycolumn);}
 print {return token(yytext(), "-4", yyline, yycolumn);}
 println {return token(yytext(), "-5", yyline, yycolumn);}
-
+int {return token(yytext(),"-64",yyline,yycolumn);}
+String {return token(yytext(),"-66",yyline,yycolumn);}
+double {return token(yytext(),"-65",yyline,yycolumn);}
 
 
 //----------------------------------------------OPERADORES ARITMETICOS
@@ -86,9 +88,7 @@ println {return token(yytext(), "-5", yyline, yycolumn);}
 
 ------------------------------------------------TIPO DE DATO
 
-"int" {return token(yytext(),"-64",yyline,yycolumn);}
-"String" {return token(yytext(),"-66",yyline,yycolumn);}
-"double" {return token(yytext(),"-65",yyline,yycolumn);}
+
 
 
 //----------------------------------------------CARACTERES ESPECIALES
