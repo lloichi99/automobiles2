@@ -251,7 +251,7 @@ public class Compilador extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         getContentPane().add(rootPanel);
@@ -349,19 +349,13 @@ public class Compilador extends javax.swing.JFrame {
         
         /* Mostrar gramáticas */
         //Sirve para eliminar los errores 
-        gramatica.delete(new String[]{"ERROR"},1);
+        gramatica.delete(new String[]{"ERROR","ERROR2"},1);
         
         
         /*Agrupacion de valores numericos*/
         gramatica.group("NUM_VAL","-61|-62|-63",true);
         
-        /*Declaracion de variables*/
-        /*Nose puede declarar una varibales sin poner el operadro de asignacion*/
-        gramatica.group("VARIABLES","-65 -54 -26 NUM_VAL",true);
-        gramatica.group("VARIABLES","-65 -26 NUM_VAL",true,
-              2,"Error de sintaxis: Falta el identificador en la variable [#,%]");
-        
-        
+      
         
         gramatica.show();
     }
@@ -409,24 +403,27 @@ public class Compilador extends javax.swing.JFrame {
     
     private void fillTableTokens() {
     ArrayList<Token> identifiers = new ArrayList<>(); // Lista para almacenar identificadores
-
+    
     tokens.forEach(token -> {
-        boolean isIdentifier = isIdentifier(token);
-        int identifierValue = isIdentifier ? -2 : -1;
-        if (isIdentifier) {
-            identifiers.add(token); // Agregar identificador a la lista
-        } else {
-            Object[] data = new Object[]{token.getLexicalComp(), token.getLexeme(), identifierValue, "[" + token.getLine() + ", " + token.getColumn() + "]"};
-            Functions.addRowDataInTable(tblTokens, data);
-        }
+    boolean isIdentifier = isIdentifier(token);
+    int identifierValue = isIdentifier ? -2 : -1;
+    if (isIdentifier) {
+    identifiers.add(token); // Agregar identificador a la lista
+    } else {
+    Object[] data = new Object[]{token.getLexicalComp(), token.getLexeme(), identifierValue, "[" + token.getLine() + ", " + token.getColumn() + "]"};
+    Functions.addRowDataInTable(tblTokens, data);
+    }
     });
-
+    
     // Llenar la tabla de tokens con los identificadores al final
     identifiers.forEach(token -> {
-        Object[] data = new Object[]{token.getLexicalComp(), token.getLexeme(), -2, "[" + token.getLine() + ", " + token.getColumn() + "]"};
-        Functions.addRowDataInTable(tblTokens, data);
+    Object[] data = new Object[]{token.getLexicalComp(), token.getLexeme(), -2, "[" + token.getLine() + ", " + token.getColumn() + "]"};
+    Functions.addRowDataInTable(tblTokens, data);
     });
-}
+    }
+
+    
+    
 
 
     private boolean isIdentifier(Token token) {

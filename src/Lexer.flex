@@ -91,9 +91,18 @@ println {return token(yytext(), "-5", yyline, yycolumn);}
 ------------------------------------------------TIPO DE DATO
 
 
-float{return token(yytext(),"-65",yyline,yycolumn);}
 String{return token(yytext(),"-66",yyline,yycolumn);}
 int{return token(yytext(),"-64",yyline,yycolumn);}
+float{return token(yytext(),"-65",yyline,yycolumn);}
+
+
+/* Declaración de tipos de dato */
+TIPO_DATO = int | float | String
+
+VALOR = Entero | Real | Cadena
+
+/* Regla para la declaración de variables */
+DeclaracionVariable = TIPO_DATO Identificador '\\=' VALOR '\\;'
 
 
 
@@ -107,16 +116,22 @@ int{return token(yytext(),"-64",yyline,yycolumn);}
 
 
 
+/* Regla para la declaración de variables */
+DeclaracionVariable = TIPO_DATO Identificador '=' VALOR ';'
+
+/* Definir la regla como un posible error */
+{
+    gramatica.group("DeclaracionVariable", "TIPO_DATO Identificador '=' VALOR ';'", true,
+                    1, "Error de sintaxis en la declaración de variable en la línea " + yyline);
+}
+
     
 //Errores   GENERALES
 . { return token(yytext(), "ERROR", yyline, yycolumn); }
 
 
 
-/* Regla para identificar la declaración de variables */
-// Identificador Erroneo
-//{Identificador} { return token(yytext(),"ERROR1", yyline,yycolumn);}
 
 
 
-    
+  
