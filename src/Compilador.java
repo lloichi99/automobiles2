@@ -251,7 +251,7 @@ public class Compilador extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         getContentPane().add(rootPanel);
@@ -402,35 +402,29 @@ public class Compilador extends javax.swing.JFrame {
     }*/
     
     private void fillTableTokens() {
-    ArrayList<Token> identifiers = new ArrayList<>(); // Lista para almacenar identificadores
+    //ArrayList<Token> identifiers = new ArrayList<>(); // Lista para almacenar identificadores
     
     tokens.forEach(token -> {
     boolean isIdentifier = isIdentifier(token);
     int identifierValue = isIdentifier ? -2 : -1;
     if (isIdentifier) {
-    identifiers.add(token); // Agregar identificador a la lista
+        Object[] data = new Object[]{token.getLexicalComp(), token.getLexeme(), identifierValue, "[" + token.getLine() + ", " + token.getColumn() + "]"};
+    Functions.addRowDataInTable(tblTokens, data);
     } else {
     Object[] data = new Object[]{token.getLexicalComp(), token.getLexeme(), identifierValue, "[" + token.getLine() + ", " + token.getColumn() + "]"};
     Functions.addRowDataInTable(tblTokens, data);
     }
     });
     
-    // Llenar la tabla de tokens con los identificadores al final
-    identifiers.forEach(token -> {
-    Object[] data = new Object[]{token.getLexicalComp(), token.getLexeme(), -2, "[" + token.getLine() + ", " + token.getColumn() + "]"};
-    Functions.addRowDataInTable(tblTokens, data);
-    });
-    }
-
-    
-    
+    } 
+   
 
 
     private boolean isIdentifier(Token token) {
     String lexema = token.getLexeme();
     
     // Lista de palabras reservadas
-    String[] palabrasReservadas = {"int", "float", "String", /* Agrega más palabras reservadas aquí */};
+    String[] palabrasReservadas = {"int","String","public","double","while","if" /* Agrega más palabras reservadas aquí */};
     
     // Verificar si el lexema comienza con una letra o un guión bajo, seguido de letras, dígitos o guiones bajos
     if (lexema.matches("[a-zA-Z_][a-zA-Z0-9_]*")) {
