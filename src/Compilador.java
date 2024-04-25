@@ -206,11 +206,11 @@ public class Compilador extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Componente léxico", "Lexema", "[Línea, Columna]"
+                "Componente léxico", "Lexema", "Identificador", "[No.Línea, Columna]"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, true, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -234,7 +234,7 @@ public class Compilador extends javax.swing.JFrame {
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 693, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 693, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 403, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
                 .addGap(17, 17, 17))
         );
         rootPanelLayout.setVerticalGroup(
@@ -251,7 +251,7 @@ public class Compilador extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         getContentPane().add(rootPanel);
@@ -345,8 +345,18 @@ public class Compilador extends javax.swing.JFrame {
 
     private void syntacticAnalysis() {
         Grammar gramatica = new Grammar(tokens, errors);
-
+        
+        
         /* Mostrar gramáticas */
+        //Sirve para eliminar los errores 
+        gramatica.delete(new String[]{"ERROR","ERROR2"},1);
+        
+        
+        /*Agrupacion de valores numericos*/
+        gramatica.group("NUM_VAL","-61|-62|-63",true);
+        
+      
+        
         gramatica.show();
     }
 
@@ -380,13 +390,59 @@ public class Compilador extends javax.swing.JFrame {
         Functions.colorTextPane(textsColor, jtpCode, new Color(40, 40, 40));
     }
 
-    private void fillTableTokens() {
-        tokens.forEach(token -> {
-            Object[] data = new Object[]{token.getLexicalComp(), token.getLexeme(), "[" + token.getLine() + ", " + token.getColumn() + "]"};
-            Functions.addRowDataInTable(tblTokens, data);
-        });
+    /*private void fillTableTokens() {
+    tokens.forEach(token -> {
+    boolean isIdentifier = isIdentifier(token);
+    if(isIdentifier == true){
+    return -2;
     }
+    Object[] data = new Object[]{token.getLexicalComp(), token.getLexeme(),isIdentifier,"[" + token.getLine() + ", " + token.getColumn() + "]"};
+    Functions.addRowDataInTable(tblTokens, data);
+    });
+    }*/
+    
+    private void fillTableTokens() {
+    //ArrayList<Token> identifiers = new ArrayList<>(); // Lista para almacenar identificadores
+    
+    tokens.forEach(token -> {
+    boolean isIdentifier = isIdentifier(token);
+    int identifierValue = isIdentifier ? -2 : -1;
+    if (isIdentifier) {
+        Object[] data = new Object[]{token.getLexicalComp(), token.getLexeme(), identifierValue, "[" + token.getLine() + ", " + token.getColumn() + "]"};
+    Functions.addRowDataInTable(tblTokens, data);
+    } else {
+    Object[] data = new Object[]{token.getLexicalComp(), token.getLexeme(), identifierValue, "[" + token.getLine() + ", " + token.getColumn() + "]"};
+    Functions.addRowDataInTable(tblTokens, data);
+    }
+    });
+    
+    } 
+   
 
+
+    private boolean isIdentifier(Token token) {
+    String lexema = token.getLexeme();
+    
+    // Lista de palabras reservadas
+    String[] palabrasReservadas = {"int","String","public","double","while","if" /* Agrega más palabras reservadas aquí */};
+    
+    // Verificar si el lexema comienza con una letra o un guión bajo, seguido de letras, dígitos o guiones bajos
+    if (lexema.matches("[a-zA-Z_][a-zA-Z0-9_]*")) {
+        // Verificar si el lexema no es una palabra reservada
+        for (String palabraReservada : palabrasReservadas) {
+            if (lexema.equals(palabraReservada)) {
+                return false; // No es un identificador, es una palabra reservada
+            }
+        }
+        return true; // Es un identificador válido
+    } else {
+        return false; // No cumple con el formato de identificador
+    }
+}
+
+  
+   
+    
     private void printConsole() {
         int sizeErrors = errors.size();
         if (sizeErrors > 0) {

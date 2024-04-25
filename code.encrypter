@@ -1,4 +1,11 @@
-kebin = 0;
-gonsalo = 1;
-if( 4 > 2){
+public double fact(int x)
+{
+int i;
+double f;
+i = 1;
+f = 1;
+while(i <= x)
+{
+f = f * 1;
+i = l + 1;
 }

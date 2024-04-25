@@ -19,6 +19,10 @@ FinDeLineaComentario = "//" {EntradaDeCaracter}* {TerminadorDeLinea}?
 ContenidoComentario = ( [^*] | \*+ [^/*] )*
 ComentarioDeDocumentacion = "/**" {ContenidoComentario} "*"+ "/"
 
+//------------------------------------------
+
+
+
 /* Comentario */
 Comentario = {ComentarioTradicional} | {FinDeLineaComentario} | {ComentarioDeDocumentacion}
 
@@ -47,6 +51,8 @@ for {return token(yytext(), "-3", yyline, yycolumn);}
 print {return token(yytext(), "-4", yyline, yycolumn);}
 println {return token(yytext(), "-5", yyline, yycolumn);}
 
+
+
 //----------------------------------------------OPERADORES ARITMETICOS
 "*" {return token(yytext(), "-21", yyline, yycolumn);}
 "/" {return token(yytext(), "-22", yyline, yycolumn);}
@@ -65,6 +71,26 @@ println {return token(yytext(), "-5", yyline, yycolumn);}
 "&&" {return token(yytext(), "-41", yyline, yycolumn);}
 "||" {return token(yytext(), "-42", yyline, yycolumn);}
 "!" {return token(yytext(), "-43", yyline, yycolumn);}
+
+
+
+
+
+//----------------------------------------------CONTANTE REAL
+{Entero} {return token(yytext(), "-61", yyline, yycolumn);}
+//----------------------------------------------CONTANTE ENTERA
+{Real} {return token(yytext(), "-62", yyline, yycolumn);}
+//----------------------------------------------CONTANTE STRING
+{Cadena} {return token(yytext(), "-63", yyline, yycolumn);}
+
+
+------------------------------------------------TIPO DE DATO
+
+"int" {return token(yytext(),"-64",yyline,yycolumn);}
+"String" {return token(yytext(),"-66",yyline,yycolumn);}
+"double" {return token(yytext(),"-65",yyline,yycolumn);}
+
+
 //----------------------------------------------CARACTERES ESPECIALES
 "[" {return token(yytext(), "-71", yyline, yycolumn);}
 "]" {return token(yytext(), "-72", yyline, yycolumn);}
@@ -76,21 +102,25 @@ println {return token(yytext(), "-5", yyline, yycolumn);}
 "}" {return token(yytext(), "-78", yyline, yycolumn);}
 
 
-//----------------------------------------------CONTANTE REAL
-{Entero} {return token(yytext(), "-61", yyline, yycolumn);}
-//----------------------------------------------CONTANTE ENTERA
-{Real} {return token(yytext(), "-62", yyline, yycolumn);}
-//----------------------------------------------CONTANTE STRING
-{Cadena} {return token(yytext(), "-63", yyline, yycolumn);}
-
 //IDENTIFICADORES
+{Identificador}\$ {return token(yytext(), "-79", yyline, yycolumn);}
+{Identificador}\% {return token(yytext(), "-80", yyline, yycolumn);}
+{Identificador}\& {return token(yytext(), "-81", yyline, yycolumn);}
+{Identificador}[a-zA-Z0-9]* {return token(yytext(), "-82", yyline, yycolumn);}
 
 
-{Identificador}\$ {return token(yytext(), "-53", yyline, yycolumn);}
-{Identificador}\% {return token(yytext(), "-52", yyline, yycolumn);}
-{Identificador}\& {return token(yytext(), "-51", yyline, yycolumn);}
-{Identificador}[a-zA-Z0-9]* {return token(yytext(), "-54", yyline, yycolumn);}
 
 
+/* Regla para la declaración de variables */
+DeclaracionVariable = TIPO_DATO Identificador '=' VALOR ';'
 
+    
+//Errores   GENERALES
 . { return token(yytext(), "ERROR", yyline, yycolumn); }
+
+
+
+
+
+
+  

@@ -1,19 +1,22 @@
 
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import jflex.exceptions.SilentExit;
 
 /**
  *
- * @author yisus
+ * @author kevin chos gonsalo y youtube
  */
 public class ExecuteJFlex {
 
     public static void main(String omega[]) {
         String lexerFile = System.getProperty("user.dir") + "/src/Lexer.flex",
-                lexerFileColor = System.getProperty("user.dir") + "/src/LexerColor.flex";
+                lexerColor = System.getProperty("user.dir") + "/src/LexerColor.flex";
         try {
-            jflex.Main.generate(new String[]{lexerFile, lexerFileColor});
+            jflex.Main.generate(new String[]{lexerFile, lexerColor});
         } catch (SilentExit ex) {
             System.out.println("Error al compilar/generar el archivo flex: " + ex);
+        
         }
     }
 }
