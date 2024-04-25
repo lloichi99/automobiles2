@@ -91,9 +91,9 @@ println {return token(yytext(), "-5", yyline, yycolumn);}
 ------------------------------------------------TIPO DE DATO
 
 
-"float" {return token(yytext(),"-65",yyline,yycolumn);}
-"String" {return token(yytext(),"-66",yyline,yycolumn);}
-"int" {return token(yytext(),"-64",yyline,yycolumn);}
+float{return token(yytext(),"-65",yyline,yycolumn);}
+String{return token(yytext(),"-66",yyline,yycolumn);}
+int{return token(yytext(),"-64",yyline,yycolumn);}
 
 
 
